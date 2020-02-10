@@ -1,23 +1,23 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class Flag extends Component {
-
   static propTypes = {
-    formFactor: PropTypes.oneOf(['square', 'normal']).isRequired,
+    formFactor: PropTypes.oneOf(["square", "normal"]).isRequired,
     countryCode: PropTypes.string.isRequired,
     size: PropTypes.number
-  }
+  };
 
   render() {
-    const {formFactor, countryCode, size} = this.props
-    const flagFile = require(`../flags/${formFactor}/${countryCode}.svg`)
+    const { formFactor, countryCode, size } = this.props;
+    const flagFile = require(`../flags/${formFactor}/${countryCode}.svg`);
     const styles = {
-      base:{
-        backgroundSize: 'contain',
-        backgroundPosition: '50%',
-        backgroundRepeast: 'no-repeat',
-        display: 'inline-block',
-        verticalAlign: 'middle',
+      base: {
+        backgroundSize: "contain",
+        backgroundPosition: "50%",
+        backgroundRepeast: "no-repeat",
+        display: "inline-block",
+        verticalAlign: "middle",
         width: size
       },
       square: {
@@ -29,16 +29,22 @@ export default class Flag extends Component {
       currentFlag: {
         backgroundImage: `url(${flagFile})`
       }
-    }
+    };
 
     return (
-      <span style={Object.assign({}, styles.base, styles[formFactor], styles.currentFlag)} />
+      <span
+        style={Object.assign(
+          {},
+          styles.base,
+          styles[formFactor],
+          styles.currentFlag
+        )}
+      />
     );
   }
-
 }
 
 Flag.defaultProps = {
-  formFactor: 'normal',
+  formFactor: "normal",
   size: 24
-}
+};
